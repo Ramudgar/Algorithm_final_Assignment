@@ -5,7 +5,7 @@ from datetime import *
 import time
 from math import *
 #import backend.dbconnection
-#import frontend.dashboard
+import Frontend.dashboard
 import Frontend.register
 
 

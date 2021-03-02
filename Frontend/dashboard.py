@@ -413,6 +413,3 @@ class Bill_app:
 
 
 
-bill=Tk()
-obj=Bill_app(bill)
-bill.mainloop()
