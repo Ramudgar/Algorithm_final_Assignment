@@ -4,10 +4,10 @@ class User:
         self.__FirstName=txt_fname
         self.__LastName=txt_lname
         self.__ContactNo=txt_Contact
-        self.__EmailID=txt_email
+        self.__Email_ID=txt_email
         self.__Security_Question=cmb_question
         self.__Answer=txt_answer
-        self.__Password=txt_pasw
+        self.__Password_=txt_pasw
         self.__Confirm_password=txt_confirm
 
     def set_FirstName(self,txt_fname):
@@ -28,11 +28,11 @@ class User:
     def get_ContactNo(self):
         return self.__ContactNo
 
-    def set_EmailID(self,txt_email):
-        self.__EmailID=txt_email
+    def set_Email_ID(self,txt_email):
+        self.__Email_ID=txt_email
 
-    def get_EmailID(self):
-        return self.__EmailID
+    def get_Email_ID(self):
+        return self.__Email_ID
 
     def set_Security_Question(self,cmb_question):
         self.__Security_Question=cmb_question
@@ -46,11 +46,11 @@ class User:
     def get_Answer(self):
         return self.__Answer
 
-    def set_Password(self,txt_pasw):
-        self.__Password=txt_pasw
+    def set_Password_(self,txt_pasw):
+        self.__Password_=txt_pasw
 
-    def get_Password(self):
-        return self.__Password
+    def get_Password_(self):
+        return self.__Password_
 
     def set_Confirm_password(self,txt_confirm):
         self.__Confirm_password=txt_confirm

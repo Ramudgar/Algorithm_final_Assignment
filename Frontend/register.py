@@ -65,7 +65,7 @@ class Register():
         self.cmb_question["values"] = ("select", "Your first pet name", "Your birt place", "Your best friend Name")
         self.cmb_question.place(x=50, y=270, width=250)
 
-        # to set "select" as defaul in combo box
+        # to set "select" as default in combo box
         self.cmb_question.current(0)
         # =======Answer============
         answer = Label(frame1, text="Answer", font=("times new roman", 15, "bold"), bg="white", fg="Black").place(x=370,
@@ -111,32 +111,32 @@ class Register():
         FirstName = self.txt_fname.get()
         LastName = self.txt_lname.get()
         Confirm_password = self.txt_confirm.get()
-        Password=self.txt_pasw.get()
+        Password_=self.txt_pasw.get()
         Answer = self.txt_answer.get()
         Security_Question =self.cmb_question.get()
-        EmailID=self.txt_email.get()
+        Email_ID=self.txt_email.get()
         ContactNo=self.txt_Contact.get()
 
 
         if self.txt_fname.get() == "" or self.txt_lname.get()=="" or self.txt_Contact.get() == "" or self.txt_email.get() == "" or self.cmb_question.get() == "select" or self.txt_answer.get() == "" or self.txt_pasw.get() == "" or self.txt_confirm.get() == "":
             messagebox.showerror("Error", "All fields are Required", parent=self.root)
 
-        elif self.txt_pasw.get() != self.txt_confirm.get():
-            messagebox.showerror("Error", "Password and confirm password should be same", parent=self.root)
+        #elif self.txt_pasw.get() != self.txt_confirm.get():
+         #   messagebox.showerror("Error", "Password and confirm password should be same", parent=self.root)
 
         elif self.var_chk.get() == 0:
             messagebox.showerror("Error", "Comobox is uncheckez, plz check it", parent=self.root)
 
-        else:
-            messagebox.showinfo("success", "Register sucessful", parent=self.root)
+        #else:
+         #   messagebox.showinfo("success", "Register sucessful", parent=self.root)
 
             return
-        u = Models.user.User(FirstName, LastName, Confirm_password, Password, Answer, Security_Question, EmailID,
+        u = Models.user.User(FirstName, LastName, Confirm_password, Password_, Answer, Security_Question, Email_ID,
                              ContactNo)
 
-        query = "insert into tbl_user(Username,Password,Addressl,Gender) values(%s,%s,%s,%s,%s,%s,%s,%s)"
-        values = (u.get_FirstName(),u.get_LastName(), u.get_Password(), u.get_Confirm_password(), u.get_Answer(),
-                  u.get_Security_Question(),u.get_EmailID(),u.get_ContactNo())
+        query = "insert into tbl_user(FirstName,LastName,Password_,Confirm_password,Answer,Security_Question,Email_ID,ContactNo) values(%s,%s,%s,%s,%s,%s,%s,%s)"
+        values = (u.get_FirstName(),u.get_LastName(), u.get_Password_(), u.get_Confirm_password(), u.get_Answer(),
+                  u.get_Security_Question(),u.get_Email_ID(),u.get_ContactNo())
 
         self.db.insert(query, values)
         messagebox.showinfo('Success', 'User Registration successfull')

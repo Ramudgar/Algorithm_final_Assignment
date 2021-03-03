@@ -96,7 +96,7 @@ class Login_window:
         if email=='' or pasw=='':
             messagebox.showerror('Error','plz fill the empty field')
         else:
-            query="select * from tbl_user where EmailID=%s and Password=%s"
+            query="select * from tbl_user where Email_ID=%s and Password_=%s"
             values=(email,pasw)
             rows=self.db.select(query,values)
             data=[]
@@ -114,7 +114,7 @@ class Login_window:
                     self.root.destroy()
 
                 else:
-                    messagebox.showerror('Error','Invalid username and password')
+                    messagebox.showerror('Error','Invalid email and password')
             else:
                 messagebox.showinfo("Error","User not registered !! Register first")
 
