@@ -4,8 +4,8 @@ from tkinter import ttk, messagebox
 from PIL import ImageTk  # pip install pillow
 
 import Frontend.login
-#import backend.dbconnection
-#import Models.user
+import Backend.dbconnection
+import Models.user
 
 
 class Register():
@@ -15,7 +15,7 @@ class Register():
         self.root.geometry("1350x700+0+0")
         self.root.config(bg="white")
 
-        #self.db = backend.dbconnection.DBConnect()
+        self.db = Backend.dbconnection.DBConnect()
         ### Background image
         self.bg = ImageTk.PhotoImage(file="images\maxresdefault.jpg")
         bg = Label(self.root, image=self.bg).place(x=0, y=0, relwidth=1, relheight=1)
@@ -29,7 +29,6 @@ class Register():
         frame1.place(x=480, y=100, width=700, height=500)
 
         # =============String Var======
-        # self.var_fname=StringVar()
         title = Label(frame1, text="REGISTER HERE", font=("times new roman", 20, "bold"), bg="white", fg="Green").place(
             x=50, y=30)
 
@@ -48,8 +47,8 @@ class Register():
         # ======Contact no============
         Contact_no = Label(frame1, text="Contact No:", font=("times new roman", 15, "bold"), bg="white",
                            fg="Black").place(x=50, y=170)
-        self.txt_Contact_no = Entry(frame1, font=("times new roman", 15), bg="lightgray")
-        self.txt_Contact_no.place(x=50, y=200, width=250)
+        self.txt_Contact = Entry(frame1, font=("times new roman", 15), bg="lightgray")
+        self.txt_Contact.place(x=50, y=200, width=250)
 
         # =======Email============
         email = Label(frame1, text="Email ID", font=("times new roman", 15, "bold"), bg="white", fg="Black").place(
@@ -75,14 +74,14 @@ class Register():
         self.txt_answer.place(x=370, y=270, width=250)
 
         # ====Password=======
-        pasword = Label(frame1, text="Password", font=("times new roman", 15, "bold"), bg="white", fg="Black").place(
+        pasw = Label(frame1, text="Password", font=("times new roman", 15, "bold"), bg="white", fg="Black").place(
             x=50, y=310)
-        self.txt_password = Entry(frame1, font=("times new roman", 15), bg="lightgray")
-        self.txt_password.place(x=50, y=340, width=250)
+        self.txt_pasw = Entry(frame1, font=("times new roman", 15), bg="lightgray")
+        self.txt_pasw.place(x=50, y=340, width=250)
 
         # ======Confirm password============
-        password_confirm = Label(frame1, text="Confirm Password", font=("times new roman", 15, "bold"), bg="white",
-                                 fg="Black").place(x=370, y=310)
+        p_confirm = Label(frame1, text="Confirm Password", font=("times new roman", 15, "bold"), bg="white",
+                          fg="Black").place(x=370, y=310)
         self.txt_confirm = Entry(frame1, font=("times new roman", 15), bg="lightgray")
         self.txt_confirm.place(x=370, y=340, width=250)
 
@@ -92,23 +91,37 @@ class Register():
         chk_box = Checkbutton(frame1, text="I Agree The Terms And Condition", variable=self.var_chk, onvalue=1,
                               offvalue=0, bg='white', font=("times new roman", 12)).place(x=50, y=370)
 
-        # ----set button------
+        # ----Register button------
 
         self.register_btn = Button(frame1, text="Register Now", font=("times new roman", 14, "bold"), bg="white",
                                    fg="blue", bd="5", cursor="hand2", command=self.register_data).place(x=50, y=410,
                                                                                                         width=250)
 
+        # ------------Signin Buttonn setup ---------------
+        lbl_account = Label(frame1, text="Already have an Account?", font=("times new roman", 12), bg="white",
+                            fg="Black").place(
+            x=340, y=390)
 
-        lbl_signup = Label(frame1, text="Sign In", font=("times new roman", 14, "bold"), bg="white", fg="blue",
-                             bd="5", cursor="hand2")
+        lbl_signup = Label(frame1, text="SignIn Here", font=("times new roman", 14, "bold"), bg="white", fg="#2EFEF7",
+                           bd="5", cursor="hand2")
         lbl_signup.place(x=370, y=410)
         lbl_signup.bind('<Button-1>', self.lbl_signin_click)
 
     def register_data(self):
-        if self.txt_fname.get() == "" or self.txt_Contact_no.get() == "" or self.txt_email.get() == "" or self.cmb_question.get() == "select" or self.txt_answer.get() == "" or self.txt_password.get() == "" or self.txt_confirm.get() == "":
+        FirstName = self.txt_fname.get()
+        LastName = self.txt_lname.get()
+        Confirm_password = self.txt_confirm.get()
+        Password=self.txt_pasw.get()
+        Answer = self.txt_answer.get()
+        Security_Question =self.cmb_question.get()
+        EmailID=self.txt_email.get()
+        ContactNo=self.txt_Contact.get()
+
+
+        if self.txt_fname.get() == "" or self.txt_lname.get()=="" or self.txt_Contact.get() == "" or self.txt_email.get() == "" or self.cmb_question.get() == "select" or self.txt_answer.get() == "" or self.txt_pasw.get() == "" or self.txt_confirm.get() == "":
             messagebox.showerror("Error", "All fields are Required", parent=self.root)
 
-        elif self.txt_password.get() != self.txt_confirm.get():
+        elif self.txt_pasw.get() != self.txt_confirm.get():
             messagebox.showerror("Error", "Password and confirm password should be same", parent=self.root)
 
         elif self.var_chk.get() == 0:
@@ -117,8 +130,22 @@ class Register():
         else:
             messagebox.showinfo("success", "Register sucessful", parent=self.root)
 
+            return
+        u = Models.user.User(FirstName, LastName, Confirm_password, Password, Answer, Security_Question, EmailID,
+                             ContactNo)
+
+        query = "insert into tbl_user(Username,Password,Addressl,Gender) values(%s,%s,%s,%s,%s,%s,%s,%s)"
+        values = (u.get_FirstName(),u.get_LastName(), u.get_Password(), u.get_Confirm_password(), u.get_Answer(),
+                  u.get_Security_Question(),u.get_EmailID(),u.get_ContactNo())
+
+        self.db.insert(query, values)
+        messagebox.showinfo('Success', 'User Registration successfull')
+        self.root.destroy()
+
+
+
 
     def lbl_signin_click(self, event):
+        '''THis function is the listener function for signin button'''
         tk = Toplevel()
         Frontend.login.Login_window(tk)
-

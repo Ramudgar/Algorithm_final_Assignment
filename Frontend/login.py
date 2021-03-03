@@ -4,7 +4,7 @@ from PIL import Image, ImageTk, ImageDraw
 from datetime import *
 import time
 from math import *
-#import backend.dbconnection
+import Backend.dbconnection
 import Frontend.dashboard
 import Frontend.register
 
@@ -16,7 +16,7 @@ class Login_window:
         self.root.geometry("1350x700+0+0")
         self.root.config(bg="#021e2f")
 
-        #self.db = backend.dbconnection.DBConnect()
+        self.db = Backend.dbconnection.DBConnect()
 
         title = Label(self.root, text="Login System for Hotel Management System", font=("poopins", 20, "bold"),
                       bg="#04444a", fg="white").place(x=0, y=0)
@@ -93,10 +93,10 @@ class Login_window:
         email=self.txt_email.get()
         pasw=self.txt_pasw.get()
 
-        if self.txt_email.get()=='' or self.txt_pasw.get()=='':
+        if email=='' or pasw=='':
             messagebox.showerror('Error','plz fill the empty field')
         else:
-            query="select * from tbl_user where Username=%s and Password=%s"
+            query="select * from tbl_user where EmailID=%s and Password=%s"
             values=(email,pasw)
             rows=self.db.select(query,values)
             data=[]
@@ -122,9 +122,6 @@ class Login_window:
         tk=Toplevel()
         Frontend.register.Register(tk)
 
-# root = Tk()
-# obj = Login_window(root)
-# root.mainloop()
 
 
 
