@@ -121,22 +121,17 @@ class Register():
         if self.txt_fname.get() == "" or self.txt_lname.get()=="" or self.txt_Contact.get() == "" or self.txt_email.get() == "" or self.cmb_question.get() == "select" or self.txt_answer.get() == "" or self.txt_pasw.get() == "" or self.txt_confirm.get() == "":
             messagebox.showerror("Error", "All fields are Required", parent=self.root)
 
-        #elif self.txt_pasw.get() != self.txt_confirm.get():
-         #   messagebox.showerror("Error", "Password and confirm password should be same", parent=self.root)
-
         elif self.var_chk.get() == 0:
             messagebox.showerror("Error", "Comobox is uncheckez, plz check it", parent=self.root)
-
-        #else:
-         #   messagebox.showinfo("success", "Register sucessful", parent=self.root)
-
             return
-        u = Models.user.User(FirstName, LastName, Confirm_password, Password_, Answer, Security_Question, Email_ID,
-                             ContactNo)
 
-        query = "insert into tbl_user(FirstName,LastName,Password_,Confirm_password,Answer,Security_Question,Email_ID,ContactNo) values(%s,%s,%s,%s,%s,%s,%s,%s)"
-        values = (u.get_FirstName(),u.get_LastName(), u.get_Password_(), u.get_Confirm_password(), u.get_Answer(),
-                  u.get_Security_Question(),u.get_Email_ID(),u.get_ContactNo())
+        u = Models.user.User(FirstName, LastName,ContactNo,Email_ID, Security_Question, Answer, Password_, Confirm_password)
+
+
+
+        query = "insert into tbl_user(FirstName,LastName,ContactNo,Email_ID,Security_Question,Answer,Password_,Confirm_password) values(%s,%s,%s,%s,%s,%s,%s,%s)"
+        values = (u.get_FirstName(),u.get_LastName(),u.get_ContactNo(),u.get_Email_ID(),u.get_Security_Question(), u.get_Answer(), u.get_Confirm_password(), u.get_Password_())
+
 
         self.db.insert(query, values)
         messagebox.showinfo('Success', 'User Registration successfull')

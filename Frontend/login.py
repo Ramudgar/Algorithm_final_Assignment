@@ -27,6 +27,10 @@ class Login_window:
         right_lbl = Label(self.root, bg="#031F3c", bd=0)
         right_lbl.place(x=600, y=0, relheight=1, relwidth=1)
 
+        #=========BG Image========
+        self.bg = ImageTk.PhotoImage(file="images\maxresdefault.jpg")
+        bg = Label(self.root, image=self.bg).place(x=0, y=0, relwidth=1, relheight=1)
+
         # ======= Frame====================
         login_frame = Frame(self.root, bg="white")
         login_frame.place(x=250, y=100, width=800, height=500)
@@ -103,8 +107,8 @@ class Login_window:
             print(rows)
             if len(rows)!=0:
                 for row in rows:
-                    data.append(row[1])
-                    data.append(row[2])
+                    data.append(row[3])
+                    data.append(row[6])
                 print(data)
                 if email==data[0] and pasw==data[1]:
 
