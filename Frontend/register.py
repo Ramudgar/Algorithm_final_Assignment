@@ -120,6 +120,9 @@ class Register():
 
         lbl_signup = Label(frame1, text="SignIn Here", font=("times new roman", 14, "bold"), bg="white", fg="#2EFEF7",
                            bd="5", cursor="hand2")
+
+    #================= Event handling =======================
+
         lbl_signup.place(x=370, y=410)
         lbl_signup.bind('<Button-1>', self.lbl_signin_click)
 
@@ -160,10 +163,8 @@ class Register():
             messagebox.showinfo('Success', 'User Registration successfull')
             self.root.destroy()
 
-        except:
-            pass
-
-
+        except Exception as es:
+            messagebox.showerror("Error", f"Error occurred due to {str(es)}", parent=self.root)
 
     def lbl_signin_click(self, event):
         '''THis function is the listener function for signin button'''
