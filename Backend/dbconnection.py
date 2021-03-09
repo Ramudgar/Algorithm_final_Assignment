@@ -2,6 +2,7 @@ import mysql.connector
 
 class DBConnect:
     def __init__(self):
+
         self.con=mysql.connector.connect(host='localhost',user='root',password='Softco@123',
                                          database='Algorithm_final')
         self.cur=self.con.cursor()

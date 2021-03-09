@@ -114,7 +114,7 @@ class Login_window:
 
                     messagebox.showinfo('Success','Congratulations!! login successfull')
                     tk=Tk()
-                    Frontend.dashboard.Bill_app(tk)
+                    Frontend.dashboard.Student(tk)
                     self.root.destroy()
 
                 else:
