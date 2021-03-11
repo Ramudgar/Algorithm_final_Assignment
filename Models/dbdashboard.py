@@ -9,7 +9,7 @@ class Student:
         self.__gender = combo_gender
         self.__contact = contact
         self.__dob = dob
-        self.__address=address
+        self.__address = address
 
 
 

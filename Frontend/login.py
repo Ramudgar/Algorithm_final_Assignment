@@ -27,36 +27,41 @@ class Login_window:
         right_lbl = Label(self.root, bg="#031F3c", bd=0)
         right_lbl.place(x=600, y=0, relheight=1, relwidth=1)
 
-        #=========BG Image========
+#=========BG Image==================================
+
         self.bg = ImageTk.PhotoImage(file="images\maxresdefault.jpg")
         bg = Label(self.root, image=self.bg).place(x=0, y=0, relwidth=1, relheight=1)
 
-        # ======= Frame====================
+# ======= Frame================================================
         login_frame = Frame(self.root, bg="white")
         login_frame.place(x=250, y=100, width=800, height=500)
 
+  #================= Title ==============================
         title = Label(login_frame, text="LOGIN HERE", font=("poopins", 30, "bold"), bg="white", fg="#08A3D2").place(
             x=300, y=50)
-
+#=== email =========================
         email = Label(login_frame, text="Email Address", font=("poopins", 18, "bold"), bg="white", fg="black").place(
             x=250, y=150)
         self.txt_email = Entry(login_frame, font=("Times new roman", 15), bg="Lightgray")
         self.txt_email.place(x=250, y=180, width=350, height=35)
-
+#==== pasw =========================================
         pasw = Label(login_frame, text="Password", font=("poopins", 18, "bold"), bg="white", fg="black").place(x=250,
                                                                                                                y=250)
         self.txt_pasw = Entry(login_frame, font=("Times new roman", 15), bg="Lightgray")
         self.txt_pasw.place(x=250, y=280, width=350, height=35)
 
-        #==========SignUp==========
+
+#==========SignUp========================================
         lbl_signup = Label(login_frame, text='No account? Sign Up.', fg='Green', bg='White')
         lbl_signup.place(x=250, y=330)
-        lbl_signup.bind('<Button-1>', self.lbl_signup_click)
-        #==============Login Button==========
+
+        lbl_signup.bind('<Button-1>', self.lbl_signup_click)# Event handling method is used to call the signup button
+
+#==============Login Button=====================================
         btn_log = Button(login_frame, text="LOGIN", font=("POOPINS", 20, "bold"), bg="white", fg="green",
                          cursor="hand2", command=self.btn_login_click).place(x=250, y=390, width=180, height=40)
 
-        # ==========clock============================
+# ==========clock=======================================================
         self.lbl = Label(self.root, text="\nWebcode clock", font=("Book Antiqua", 25, "bold"), compound=BOTTOM,
                          bg="#081923", fg="White", bd=0)
         self.lbl.place(x=90, y=120, height=450, width=350)
@@ -64,6 +69,10 @@ class Login_window:
         self.working()
 
     def clock_image(self, hr, min_, sec_):
+
+        ''' this function draws hour,min and sec line in to clock image and sets
+        angle for rotation of hour,min and sec lines '''
+
         clock = Image.new("RGB", (400, 400), (8, 25, 35))
         draw = ImageDraw.Draw(clock)
         #  for clock Image=====
@@ -81,6 +90,10 @@ class Login_window:
         clock.save("clock_new.png")
 
     def working(self):
+        '''
+        This function fetch current time
+        :return: time
+        '''
         h = datetime.now().time().hour
         m = datetime.now().time().minute
         s = datetime.now().time().second
@@ -94,35 +107,45 @@ class Login_window:
         self.lbl.after(190, self.working)
 
     def btn_login_click(self):
+        '''
+        This function matches the input email and password with data stored in the database;
+        If email and password stored in the database match with input value then open the dashboard page
+        :return:none
+        '''
         email=self.txt_email.get()
         pasw=self.txt_pasw.get()
 
-        if email=='' or pasw=='':
-            messagebox.showerror('Error','plz fill the empty field')
-        else:
-            query="select * from tbl_user where Email_ID=%s and Password_=%s"
-            values=(email,pasw)
-            rows=self.db.select(query,values)
-            data=[]
-            print(rows)
-            if len(rows)!=0:
-                for row in rows:
-                    data.append(row[3])
-                    data.append(row[6])
-                print(data)
-                if email==data[0] and pasw==data[1]:
-
-                    messagebox.showinfo('Success','Congratulations!! login successfull')
-                    tk=Tk()
-                    Frontend.dashboard.Student(tk)
-                    self.root.destroy()
-
-                else:
-                    messagebox.showerror('Error','Invalid email and password')
+        try:
+            if email=='' or pasw=='':
+                messagebox.showerror('Error','plz fill the empty field')
             else:
-                messagebox.showinfo("Error","User not registered !! Register first")
+                query="select * from tbl_user where Email_ID=%s and Password_=%s"
+                values=(email,pasw)
+                rows=self.db.select(query,values)
+                data=[]
+                #print(rows)
+                if len(rows)!=0:
+                    for row in rows:
+                        data.append(row[3])
+                        data.append(row[6])
+                    #print(data)
+                    if email==data[0] and pasw==data[1]:
+
+                        messagebox.showinfo('Success','Congratulations!! login successfull')
+                        tk=Tk()
+                        Frontend.dashboard.Student(tk)
+                        self.root.destroy()
+
+                    else:
+                        messagebox.showerror('Error','Invalid email and password')
+                else:
+                    messagebox.showinfo("Error","User not registered !! Register first")
+
+        except IndexError:
+            print(" An error occured in btn_login_click")
 
     def lbl_signup_click(self,event):
+        ''' This function is the listener function for sign up button'''
         tk=Toplevel()
         Frontend.register.Register(tk)
 

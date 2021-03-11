@@ -1,5 +1,6 @@
 
 class User:
+
     def __init__(self, txt_fname, txt_lname,txt_Contact,txt_email,cmb_question,txt_answer,txt_pasw,txt_confirm):
         self.__FirstName=txt_fname
         self.__LastName=txt_lname

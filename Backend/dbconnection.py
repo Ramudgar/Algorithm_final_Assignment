@@ -19,11 +19,34 @@ class DBConnect:
         self.con.commit()
 
     def select(self,query,values):
+        '''
+        this function will inser the data in to database
+        :param query: query should be string type
+        :param values: values should tuple
+        :return: rows
+        '''
         self.cur.execute(query,values)
         rows=self.cur.fetchall()
         return rows
 
     def selectall(self,query):
+        '''
+        this function fetch all values from database to tree view
+        :param query:
+        :return:value from database
+        '''
         self.cur.execute(query)
         rows = self.cur.fetchall()
         return rows
+
+    def create(self, query):
+        self.cur.execute(query)
+        self.con.commit()
+
+
+
+
+
+
+
+
