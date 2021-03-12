@@ -5,6 +5,7 @@ from Models import dbdashboard
 class Test_Student(unittest.TestCase):
 
     def setUp(self):
+        '''Hook method for setting up the test fixture before exercising it.'''
         self.ram = dbdashboard.Student ("11111", "Yadav12", "fmal11", "mail11", "98203011", "1990-02-9", "sarlahi11",)
 
     def test_set_roll_no(self):
@@ -58,4 +59,5 @@ class Test_Student(unittest.TestCase):
         self.assertEqual("sarlahi11", self.ram.get_address())
 
     def tearDown(self):
+        '''Hook method for deconstructing the test fixture after testing it.'''
         self.ram = None

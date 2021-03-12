@@ -5,6 +5,7 @@ from Models import user
 class Test_User(unittest.TestCase):
 
     def setUp(self):
+        '''Hook method for setting up the test fixture before exercising it.'''
         self.e1 = user.User("Ram udgar", "Yadav_", "9811722711", "softwarica@gmail.com",
                             "Biratnagar", "Animal", "555555", "555555")
 
@@ -58,4 +59,5 @@ class Test_User(unittest.TestCase):
         self.assertEqual("555555", self.e1.get_Password_())
 
     def tearDown(self):
+        '''Hook method for deconstructing the test fixture after testing it.'''
         self.e1 = None

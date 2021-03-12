@@ -13,18 +13,18 @@ class Login_window:
     def __init__(self, root):
         self.root = root
         self.root.title("Login window")
-        self.root.geometry("1350x700+0+0")
-        self.root.config(bg="#021e2f")
+        self.root.geometry("1150x700+0+0")
+        self.root.config(bg="#2EFEF7")
 
         self.db = Backend.dbconnection.DBConnect()
 
-        title = Label(self.root, text="Login System for Hotel Management System", font=("poopins", 20, "bold"),
-                      bg="#04444a", fg="white").place(x=0, y=0)
+        title = Label(self.root, text="Login System for Student ledger Management ", font=("poopins", 20, "bold"),
+                      bg="#2EFEF7", fg="white").place(x=0, y=0)
 
         left_lbl = Label(self.root, bg="#021e2f", bd=0)
         left_lbl.place(x=0, y=0, relheight=1, width=600)
 
-        right_lbl = Label(self.root, bg="#031F3c", bd=0)
+        right_lbl = Label(self.root, bg="#2EFEF7", bd=0)
         right_lbl.place(x=600, y=0, relheight=1, relwidth=1)
 
 #=========BG Image==================================
@@ -33,26 +33,26 @@ class Login_window:
         bg = Label(self.root, image=self.bg).place(x=0, y=0, relwidth=1, relheight=1)
 
 # ======= Frame================================================
-        login_frame = Frame(self.root, bg="white")
-        login_frame.place(x=250, y=100, width=800, height=500)
+        login_frame = Frame(self.root, bg="#E67206")
+        login_frame.place(x=200, y=100, width=800, height=500)
 
   #================= Title ==============================
-        title = Label(login_frame, text="LOGIN HERE", font=("poopins", 30, "bold"), bg="white", fg="#08A3D2").place(
-            x=300, y=50)
+        title = Label(login_frame, text="LOGIN SYSTEM ", font=("poopins", 30, "bold"), bg="#DA7605", fg="white")\
+            .place(x=300, y=50,width=450)
 #=== email =========================
-        email = Label(login_frame, text="Email Address", font=("poopins", 18, "bold"), bg="white", fg="black").place(
+        email = Label(login_frame, text="Email Address", font=("poopins", 18, "bold"), bg="#E67206", fg="black").place(
             x=250, y=150)
-        self.txt_email = Entry(login_frame, font=("Times new roman", 15), bg="Lightgray")
+        self.txt_email = Entry(login_frame, font=("Times new roman", 15), bg="lightgray")
         self.txt_email.place(x=250, y=180, width=350, height=35)
 #==== pasw =========================================
-        pasw = Label(login_frame, text="Password", font=("poopins", 18, "bold"), bg="white", fg="black").place(x=250,
+        pasw = Label(login_frame, text="Password", font=("poopins", 18, "bold"), bg="#E67206", fg="black").place(x=250,
                                                                                                                y=250)
         self.txt_pasw = Entry(login_frame, font=("Times new roman", 15), bg="Lightgray")
         self.txt_pasw.place(x=250, y=280, width=350, height=35)
 
 
 #==========SignUp========================================
-        lbl_signup = Label(login_frame, text='No account? Sign Up.', fg='Green', bg='White')
+        lbl_signup = Label(login_frame, text='No account? Sign Up.',font=(20), fg='white', bg='#E67206')
         lbl_signup.place(x=250, y=330)
 
         lbl_signup.bind('<Button-1>', self.lbl_signup_click)# Event handling method is used to call the signup button
@@ -62,7 +62,7 @@ class Login_window:
                          cursor="hand2", command=self.btn_login_click).place(x=250, y=390, width=180, height=40)
 
 # ==========clock=======================================================
-        self.lbl = Label(self.root, text="\nWebcode clock", font=("Book Antiqua", 25, "bold"), compound=BOTTOM,
+        self.lbl = Label(self.root, text="\nStudent ledger Management", font=("Book Antiqua", 18, "bold"), compound=BOTTOM,
                          bg="#081923", fg="White", bd=0)
         self.lbl.place(x=90, y=120, height=450, width=350)
 

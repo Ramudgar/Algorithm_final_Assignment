@@ -22,43 +22,43 @@ class Register():
         bg = Label(self.root, image=self.bg).place(x=0, y=0, relwidth=1, relheight=1)
 
         # === Left Image====
-        self.left = ImageTk.PhotoImage(file="images/sensors.jpg")
+        self.left = ImageTk.PhotoImage(file="C:/Users/ramud/OneDrive/Desktop/Algorithm_Assignment/Frontend/regi.jpg")
         left = Label(self.root, image=self.left).place(x=80, y=100, width=400, height=500)
 
         # ======Register frame======
-        frame1 = Frame(self.root, bg="white")
+        frame1 = Frame(self.root, bg="orange")
         frame1.place(x=480, y=100, width=700, height=500)
 
         # =============String Var======
-        title = Label(frame1, text="REGISTER HERE", font=("times new roman", 20, "bold"), bg="white",
+        title = Label(frame1, text="REGISTER HERE", font=("times new roman", 20, "bold"), bg="orange",
                       fg="Green").place(x=50, y=30)
 
         # ======First Name===Entry field=======
-        f_name = Label(frame1, text="First Name", font=("times new roman", 15, "bold"), bg="white",
+        f_name = Label(frame1, text="First Name", font=("times new roman", 15, "bold"), bg="orange",
                        fg="Black").place(x=50, y=100)
-        self.txt_fname = Entry(frame1, font=("times new roman", 15), bg="lightgray")
+        self.txt_fname = Entry(frame1, font=("times new roman", 15), bg="white")
         self.txt_fname.place(x=50, y=130, width=250)
 
         # ==== Last Name===========
-        l_name = Label(frame1, text="Last Name", font=("times new roman", 15, "bold"), bg="white", fg="Black").place(
+        l_name = Label(frame1, text="Last Name", font=("times new roman", 15, "bold"), bg="orange", fg="Black").place(
             x=370, y=100)
-        self.txt_lname = Entry(frame1, font=("times new roman", 15), bg="lightgray")
+        self.txt_lname = Entry(frame1, font=("times new roman", 15), bg="white")
         self.txt_lname.place(x=370, y=130, width=250)
 
         # ======Contact no============
-        Contact_no = Label(frame1, text="Contact No:", font=("times new roman", 15, "bold"), bg="white",
+        Contact_no = Label(frame1, text="Contact No:", font=("times new roman", 15, "bold"), bg="orange",
                            fg="Black").place(x=50, y=170)
-        self.txt_Contact = Entry(frame1, font=("times new roman", 15), bg="lightgray")
+        self.txt_Contact = Entry(frame1, font=("times new roman", 15), bg="white")
         self.txt_Contact.place(x=50, y=200, width=250)
 
         # =======Email============
-        email = Label(frame1, text="Email ID", font=("times new roman", 15, "bold"), bg="white", fg="Black").place(
+        email = Label(frame1, text="Email ID", font=("times new roman", 15, "bold"), bg="orange", fg="Black").place(
             x=370, y=170)
-        self.txt_email = Entry(frame1, font=("times new roman", 15), bg="lightgray")
+        self.txt_email = Entry(frame1, font=("times new roman", 15), bg="white")
         self.txt_email.place(x=370, y=200, width=250)
 
         # ========Security question=====
-        question = Label(frame1, text="Security Question", font=("times new roman", 13, "bold"), bg="white",
+        question = Label(frame1, text="Security Question", font=("times new roman", 13, "bold"), bg="orange",
                          fg="Black").place(x=50, y=240)
 
         # Using combo box=====
@@ -70,42 +70,42 @@ class Register():
         self.cmb_question.current(0)
 
         # =======Answer============
-        answer = Label(frame1, text="Answer", font=("times new roman", 15, "bold"), bg="white", fg="Black").place(x=370,
+        answer = Label(frame1, text="Answer", font=("times new roman", 15, "bold"), bg="orange", fg="Black").place(x=370,
                                                                                                                   y=240)
-        self.txt_answer = Entry(frame1, font=("times new roman", 15), bg="lightgray")
+        self.txt_answer = Entry(frame1, font=("times new roman", 15), bg="white")
         self.txt_answer.place(x=370, y=270, width=250)
 
         # ====Password=======
-        pasw = Label(frame1, text="Password", font=("times new roman", 15, "bold"), bg="white", fg="Black").place(
+        pasw = Label(frame1, text="Password", font=("times new roman", 15, "bold"), bg="orange", fg="Black").place(
             x=50, y=310)
-        self.txt_pasw = Entry(frame1, font=("times new roman", 15), bg="lightgray")
+        self.txt_pasw = Entry(frame1, font=("times new roman", 15), bg="white")
         self.txt_pasw.place(x=50, y=340, width=250)
 
         # ======Confirm password============
-        p_confirm = Label(frame1, text="Confirm Password", font=("times new roman", 15, "bold"), bg="white",
+        p_confirm = Label(frame1, text="Confirm Password", font=("times new roman", 15, "bold"), bg="orange",
                           fg="Black").place(x=370, y=310)
-        self.txt_confirm = Entry(frame1, font=("times new roman", 15), bg="lightgray")
+        self.txt_confirm = Entry(frame1, font=("times new roman", 15), bg="white")
         self.txt_confirm.place(x=370, y=340, width=250)
 
         # -------  check box-------
 
         self.var_chk = IntVar()
         chk_box = Checkbutton(frame1, text="I Agree The Terms And Condition", variable=self.var_chk, onvalue=1,
-                              offvalue=0, bg='white', font=("times new roman", 12)).place(x=50, y=370)
+                              offvalue=0, bg='orange', font=("times new roman", 12)).place(x=50, y=370)
 
         # ----Register button------
 
-        self.register_btn = Button(frame1, text="Register Now", font=("times new roman", 14, "bold"), bg="white",
+        self.register_btn = Button(frame1, text="Register Now", font=("times new roman", 14, "bold"), bg="orange",
                                    fg="blue", bd="5", cursor="hand2", command=self.register_data).place(x=50, y=410,
                                                                                                         width=250)
 
         # ------------Signin Buttonn setup ---------------
 
-        lbl_account = Label(frame1, text="Already have an Account?", font=("times new roman", 12), bg="white",
+        lbl_account = Label(frame1, text="Already have an Account?", font=("times new roman", 12), bg="orange",
                             fg="Black").place(
             x=340, y=390)
 
-        lbl_signup = Label(frame1, text="SignIn Here", font=("times new roman", 14, "bold"), bg="white", fg="#2EFEF7",
+        lbl_signup = Label(frame1, text="SignIn Here", font=("times new roman", 14, "bold"), bg="orange", fg="#2EFEF7",
                            bd="5", cursor="hand2")
 
         # ================= Event handling =======================
